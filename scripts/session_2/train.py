@@ -65,10 +65,10 @@ def train():
         ],
         remainder="drop",
     )
-    max_iter = 5000
+    max_iter = 4000
     tol = 1e-3
     learning_rate = "optimal"
-    random_state = 20
+    random_state = 50
 
     model = Pipeline(
         steps=[
@@ -87,7 +87,7 @@ def train():
     )
 
     logger.info("Training model...")
-    with mlflow.start_run(run_name="housing_linear_regression_5"):
+    with mlflow.start_run(run_name="housing_linear_regression_2"):
         mlflow.log_param(
             "max_iter",
             max_iter,
