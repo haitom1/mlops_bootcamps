@@ -1,19 +1,20 @@
-import mlflow.sklearn
+# import mlflow.sklearn
+from joblib import load
 import pandas as pd
 from fastapi import APIRouter
 
-from scripts.session_3.scripts.Prediction_request import PredictRequest
-from scripts.session_3.scripts.Prediction_Response import PredictResponse
+from scripts.session_5.scripts.Prediction_request import PredictRequest
+from scripts.session_5.scripts.Prediction_Response import PredictResponse
 
-mlflow.set_tracking_uri("http://172.17.32.1:8080")
+# mlflow.set_tracking_uri("http://172.17.32.1:8080")
 
-model_name = "housing_price_predictor"
-model_version = "2"
+# model_name = "housing_price_predictor"
+# model_version = "2"
 
-model_uri = f"models:/{model_name}/{model_version}"
+# model_uri = f"models:/{model_name}/{model_version}"
 
-model = mlflow.sklearn.load_model(model_uri)
-
+# model = mlflow.sklearn.load_model(model_uri)
+model = load("scripts/session_5/housing_linear.joblib")
 housing_router = APIRouter(prefix="/housing")
 
 @housing_router.post("/predict", response_model=PredictResponse)
